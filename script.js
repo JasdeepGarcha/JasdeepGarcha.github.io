@@ -1,14 +1,32 @@
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('yearInput').addEventListener('keypress', function(event) {
+        if (event.key === "Enter") {
+            fetchRaceSchedule();
+        }
+    });
+
+    document.getElementById('getScheduleButton').addEventListener('click', fetchRaceSchedule);
+});
+
 function fetchRaceSchedule() {
     const year = document.getElementById('yearInput').value;
-    if (!year) {
-        alert("Please enter a year.");
+    if (!year || year.length !== 4 || isNaN(year)) {
+        alert("Please enter a valid four-digit year.");
         return;
     }
     const apiUrl = `https://ergast.com/api/f1/${year}.json`;
     fetch(apiUrl)
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
         .then(data => displayRaceData(data.MRData.RaceTable))
-        .catch(error => console.error('Error fetching data:', error));
+        .catch(error => {
+            console.error('Error fetching data:', error);
+            alert("Failed to fetch data. Please try again later.");
+        });
 }
 
 function displayRaceData(raceTable) {
