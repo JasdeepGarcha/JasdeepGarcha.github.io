@@ -1,0 +1,47 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: red;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    outline: none;
+    border: 2px solid black;
+}
+
+button:hover {
+    background-color: #ffffff;
+    color: #000000;
+    animation: shake 0.5s;
+}
+input[type="text"] {
+    padding: 8px;
+    border: 2px solid #ddd;
+    font-size: 16px;
+    width: 200px;
+}
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
+    20%, 40%, 60%, 80% { transform: translateX(10px); }
+}
+
